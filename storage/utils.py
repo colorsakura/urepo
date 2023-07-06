@@ -3,7 +3,7 @@ from typing import Union
 
 def pretty_size(
     file_size: Union[str, int, float],
-    units: list = [" bytes", " KB", " MB", " GB", " TB", " PB", " EB"],
+    units: list = [" B", " KB", " MB", " GB", " TB", " PB", " EB"],
 ) -> str:
     """Get human readable size, it keep two decimal places.
        For example, 12345 -> 12.06 KB.
@@ -12,7 +12,7 @@ def pretty_size(
     Args:
         file_size (float): File size.
         units (list, optional): List of size units. Defaults to
-         [" bytes", " KB", " MB", " GB", " TB", " PB", " EB"].
+         [" B", " KB", " MB", " GB", " TB", " PB", " EB"].
 
     Returns:
         str: Human readable size.
