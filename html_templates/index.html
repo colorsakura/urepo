@@ -28,7 +28,7 @@
       {%- for file_info in file_info_list %}
       <tr class="row">
         <td class="col-md-8">
-          <a href="/{{ file_info.path }}" rel="noreferrer">{{ file_info.name }}</a>
+          <a class="link-underline-opacity-0 link-underline-opacity-75-hover" href="/{{ file_info.path }}" rel="noreferrer">{{ file_info.name }}</a>
         </td>
         <td class="col-md-2">{{ file_info.size }}</td>
         <td class="col-md-2">{{ file_info.last_update_date }}</td>
