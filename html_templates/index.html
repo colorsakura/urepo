@@ -14,15 +14,18 @@
         <h1>Index</h1>
 
         <table class="table table-hover">
-            <tr>
-                <th>Name</th>
-                <th>Size</th>
-                <th>Last upload</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Last upload</th>
+                </tr>
+            </thead>
+
             {%- for file_info in file_info_list %}
             <tr>
                 <td>
-                    <ol><a href="/{{ file_info.path }}" rel="noreferrer">{{ file_info.name }}</a></ol>
+                    <a href="/{{ file_info.path }}" rel="noreferrer">{{ file_info.name }}</a>
                 </td>
                 <td>{{ file_info.size }}</td>
                 <td>{{ file_info.last_update_date }}</td>
