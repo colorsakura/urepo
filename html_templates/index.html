@@ -17,7 +17,7 @@
     </header>
 
     <table class="table table-hover table-borderless">
-      <thead class="table-group-divider">
+      <thead>
         <tr class="row">
           <th class="col-sm-8">Name</th>
           <th class="col-sm-2">Size</th>
@@ -25,16 +25,18 @@
         </tr>
       </thead>
 
-      {%- for file_info in file_info_list %}
-      <tr class="row">
-        <td class="col-md-8">
-          <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-            href="/{{ file_info.path }}" rel="noreferrer">{{ file_info.name }}</a>
-        </td>
-        <td class="col-md-2">{{ file_info.size }}</td>
-        <td class="col-md-2">{{ file_info.last_update_date }}</td>
-      </tr>
-      {%- endfor %}
+      <thead class="table-group-divider">
+        {%- for file_info in file_info_list %}
+        <tr class="row">
+          <td class="col-md-8">
+            <a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+              href="/{{ file_info.path }}" rel="noreferrer">{{ file_info.name }}</a>
+          </td>
+          <td class="col-md-2">{{ file_info.size }}</td>
+          <td class="col-md-2">{{ file_info.last_update_date }}</td>
+        </tr>
+        {%- endfor %}
+      </thead>
     </table>
 
     <footer>Source code: https://github.com/vifly/urepo</footer>
