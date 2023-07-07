@@ -18,7 +18,7 @@ def pretty_size(
         str: Human readable size.
     """
     return (
-        "{:.2f}{}".format(float(file_size), units[0])
+        "{:.1f}{}".format(float(file_size), units[0])
         if file_size < 1024
         else pretty_size(file_size / 1024, units[1:])
     )
