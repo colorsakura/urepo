@@ -19,6 +19,7 @@ templates = Jinja2Templates(directory="html_templates")
 
 
 @app.get("/{file_path:path}")
+# ISSUE: 加载速度太慢，主要需要调用 OneDrive 
 async def list_or_get_file(request: Request, file_path: str):
     # encode illegal char
     if ":" in file_path:
