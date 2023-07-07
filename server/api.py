@@ -1,6 +1,7 @@
 import os
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from storage.onedrive import OneDrive
 
@@ -15,7 +16,8 @@ except KeyError:
         )
     )
 
-templates = Jinja2Templates(directory="html_templates")
+templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/{file_path:path}")
