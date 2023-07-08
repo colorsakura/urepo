@@ -149,7 +149,7 @@ class OneDrive:
             FileInfo(
                 i["name"],
                 " - " if "folder" in i else pretty_size(i["size"]),
-                i["lastModifiedDateTime"],
+                i["lastModifiedDateTime"][0:19].replace('T', ' '),
                 pathjoin(path, i["name"]),
             )
             for i in r.json()["value"]
