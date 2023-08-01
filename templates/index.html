@@ -31,8 +31,8 @@
             <thead>
               <tr class="row">
                 <th class="col-sm-7">Name</th>
-                <th class="col-sm-2">Size</th>
-                <th class="col-sm-3">Date</th>
+                <th class="col-sm-2 text-end">Size</th>
+                <th class="col-sm-3 text-end">Date</th>
               </tr>
             </thead>
 
@@ -46,8 +46,10 @@
                   >{{ file_info.name }}</a
                 >
               </td>
-              <td class="col-sm-2">{{ file_info.size }}</td>
-              <td class="col-sm-3">{{ file_info.last_update_date }}</td>
+              <td class="col-sm-2 text-end">{{ file_info.size }}</td>
+              <td class="col-sm-3 text-end">
+                {{ file_info.last_update_date }}
+              </td>
             </tr>
             {%- endfor %}
           </table>
