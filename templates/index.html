@@ -26,8 +26,8 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-9">
-          <table class="table table-hover table-borderless">
+        <div class="col-md-9 table-responsive">
+          <table class="table table-hover">
             <thead>
               <tr class="row">
                 <th class="col-sm-7">Name</th>
@@ -36,22 +36,24 @@
               </tr>
             </thead>
 
-            {%- for file_info in file_info_list %}
-            <tr class="row">
-              <td class="col-sm-7">
-                <a
-                  class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-                  href="/{{ file_info.path }}"
-                  rel="noreferrer"
-                  >{{ file_info.name }}</a
-                >
-              </td>
-              <td class="col-sm-2 text-end">{{ file_info.size }}</td>
-              <td class="col-sm-3 text-end">
-                {{ file_info.last_update_date }}
-              </td>
-            </tr>
-            {%- endfor %}
+            <tbody class="table-group-divider">
+              {%- for file_info in file_info_list %}
+              <tr class="row">
+                <td class="col-sm-7">
+                  <a
+                    class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                    href="/{{ file_info.path }}"
+                    rel="noreferrer"
+                    >{{ file_info.name }}</a
+                  >
+                </td>
+                <td class="col-sm-2 text-end">{{ file_info.size }}</td>
+                <td class="col-sm-3 text-end">
+                  {{ file_info.last_update_date }}
+                </td>
+              </tr>
+              {%- endfor %}
+            </tbody>
           </table>
         </div>
         <!-- TODO: display some messages -->
