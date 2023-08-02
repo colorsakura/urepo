@@ -1,19 +1,17 @@
 import os
-from fastapi import FastAPI, Request, HTTPException
+
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from storage.onedrive import OneDrive
-
 
 app = FastAPI()
 try:
     onedrive = OneDrive.init_from_env()
 except KeyError:
     onedrive = OneDrive.init_from_json(
-        os.path.normpath(
-            os.path.join(os.path.dirname(__file__), "../auth.json")
-        )
+        os.path.normpath(os.path.join(os.path.dirname(__file__), "../auth.json"))
     )
 
 templates = Jinja2Templates(directory="templates")
@@ -21,7 +19,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/{file_path:path}")
-# ISSUE: 加载速度太慢，主要需要调用 OneDrive 
+# ISSUE: 加载速度太慢，主要需要调用 OneDrive
 async def list_or_get_file(request: Request, file_path: str):
     # encode illegal char
     if ":" in file_path:

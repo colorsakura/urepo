@@ -1,7 +1,9 @@
-import requests
 import json
 from os.path import join as pathjoin
-from typing import Optional, NamedTuple, Callable
+from typing import Callable, NamedTuple, Optional
+
+import requests
+
 from .utils import pretty_size
 
 
@@ -149,7 +151,7 @@ class OneDrive:
             FileInfo(
                 i["name"],
                 " - " if "folder" in i else pretty_size(i["size"]),
-                i["lastModifiedDateTime"][0:19].replace('T', ' '),
+                i["lastModifiedDateTime"][0:19].replace("T", " "),
                 pathjoin(path, i["name"]),
             )
             for i in r.json()["value"]
