@@ -172,3 +172,11 @@ class OneDrive:
             raise RuntimeError(r.text)
 
         return r.json()["@microsoft.graph.downloadUrl"]
+
+    @_try_refresh
+    def get_all_link(self):
+        files = self.ls_folder("")
+        result = {}
+        for f in files:
+            result[f.name] = self.get_download_link(f.path)
+        return result
