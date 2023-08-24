@@ -19,8 +19,6 @@ except KeyError:
         os.path.normpath(os.path.join(os.path.dirname(__file__), "../auth.json"))
     )
 
-cache_db = onedrive.get_all_link()
-
 
 @app.get("/{file_path:path}")
 # ISSUE: 加载速度太慢，主要需要调用 OneDrive
@@ -39,8 +37,7 @@ async def list_or_get_file(request: Request, file_path: str):
             context={"request": request, "file_info_list": file_info_list},
         )
     else:
-        # download_link = onedrive.get_download_link(file_path)
-        download_link = cache_db[file_path] or onedrive.get_download_link(file_path)
+        download_link = onedrive.get_download_link(file_path)
         if download_link:
             return RedirectResponse(download_link, status_code=307)
         else:
