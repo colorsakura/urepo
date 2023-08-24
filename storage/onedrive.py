@@ -32,7 +32,7 @@ class OneDrive:
             self.path = self.path[1:]
         self.access_token = ""
 
-        self.refresh()
+        self.new_token()
 
     @staticmethod
     def init_from_dict(key_val: dict) -> "OneDrive":
@@ -67,7 +67,7 @@ class OneDrive:
 
         return resp
 
-    def refresh(self):
+    def new_token(self):
         header = {
             "Content-Type": "application/x-www-form-urlencoded",
         }
@@ -106,7 +106,7 @@ class OneDrive:
             try:
                 return func(self, *args, **kwargs)
             except:
-                self.refresh()
+                self.new_token()
                 return func(self, *args, **kwargs)
 
         return wrapper

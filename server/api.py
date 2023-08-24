@@ -7,15 +7,17 @@ from fastapi.templating import Jinja2Templates
 from storage.onedrive import OneDrive
 
 app = FastAPI()
+
+templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
 try:
     onedrive = OneDrive.init_from_env()
 except KeyError:
     onedrive = OneDrive.init_from_json(
         os.path.normpath(os.path.join(os.path.dirname(__file__), "../auth.json"))
     )
-
-templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/{file_path:path}")
