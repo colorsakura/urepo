@@ -21,14 +21,8 @@ except KeyError:
 
 
 @app.get("/")
-async def list_or_get_file(request: Request, file_path: str):
-    # encode illegal char
-    # if ":" in file_path:
-    # file_path = file_path.replace(":", "-colon-")
-    # is_folder = onedrive.is_folder(file_path)
-    # if is_folder is None:
-    # return HTTPException(404, f"{file_path} is not exist.")
-    file_info_list = onedrive.ls_folder(file_path)
+async def list_or_get_file(request: Request):
+    file_info_list = onedrive.ls_folder("")
     file_info_list = [i._asdict() for i in file_info_list]
     return templates.TemplateResponse(
         "index.html",
