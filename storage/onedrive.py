@@ -111,8 +111,8 @@ class OneDrive:
 
         return wrapper
 
-    @timer
     @_try_refresh
+    @timer
     def is_folder(self, path: str) -> Optional[bool]:
         onedrive_path = pathjoin(self.path, path)
 
@@ -133,8 +133,8 @@ class OneDrive:
         else:
             return False
 
-    @timer
     @_try_refresh
+    @timer
     def ls_folder(self, path: str) -> Optional[list]:
         onedrive_path = pathjoin(self.path, path)
         if not onedrive_path:
@@ -161,8 +161,8 @@ class OneDrive:
 
         return file_info_list
 
-    @timer
     @_try_refresh
+    @timer
     def get_download_link(self, file_name: str) -> Optional[str]:
         onedrive_path = pathjoin(self.path, file_name)
         url = f"https://graph.microsoft.com/v1.0/me/drive/root:/{onedrive_path}"
