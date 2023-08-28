@@ -1,18 +1,22 @@
 {
-    "builds": [
-        {
-            "src": "/server/api.py",
-            "use": "@vercel/python"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/",
-            "dest": "server/api.py"
-        },
-        {
-            "src": "/.*.(sig|zst|db|files|key)",
-            "dest": "server/api.py"
-        }
-    ]
+  "builds": [
+    {
+      "src": "/server/api.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "server/api.py"
+    },
+    {
+      "src": "/.*.(sig|zst|db|files|key)",
+      "dest": "server/api.py"
+    },
+    {
+      "src": "/static/.*",
+      "dest": "server/api.py"
+    }
+  ]
 }
