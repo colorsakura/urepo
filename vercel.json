@@ -7,7 +7,11 @@
     ],
     "routes": [
         {
-            "src": "/(.*)",
+            "src": "/",
+            "dest": "server/api.py"
+        },
+        {
+            "src": "/.*.(sig|zst|db|files|key)",
             "dest": "server/api.py"
         }
     ]
