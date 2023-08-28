@@ -20,25 +20,26 @@ except KeyError:
     )
 
 
-@app.get("/{file_path:path}")
-# ISSUE: 加载速度太慢，主要需要调用 OneDrive
+@app.get("/")
 async def list_or_get_file(request: Request, file_path: str):
     # encode illegal char
-    if ":" in file_path:
-        file_path = file_path.replace(":", "-colon-")
-    is_folder = onedrive.is_folder(file_path)
-    if is_folder is None:
-        return HTTPException(404, f"{file_path} is not exist.")
-    elif is_folder is True:
-        file_info_list = onedrive.ls_folder(file_path)
-        file_info_list = [i._asdict() for i in file_info_list]
-        return templates.TemplateResponse(
-            "index.html",
-            context={"request": request, "file_info_list": file_info_list},
-        )
+    # if ":" in file_path:
+    # file_path = file_path.replace(":", "-colon-")
+    # is_folder = onedrive.is_folder(file_path)
+    # if is_folder is None:
+    # return HTTPException(404, f"{file_path} is not exist.")
+    file_info_list = onedrive.ls_folder(file_path)
+    file_info_list = [i._asdict() for i in file_info_list]
+    return templates.TemplateResponse(
+        "index.html",
+        context={"request": request, "file_info_list": file_info_list},
+    )
+
+
+@app.get("/{file_path:path}")
+async def downloader(file_path: str):
+    download_link = onedrive.get_download_link(file_path)
+    if download_link:
+        return RedirectResponse(download_link, status_code=307)
     else:
-        download_link = onedrive.get_download_link(file_path)
-        if download_link:
-            return RedirectResponse(download_link, status_code=307)
-        else:
-            return HTTPException(404, f"{file_path} is not exist.")
+        return HTTPException(404, f"{file_path} is not exist.")
