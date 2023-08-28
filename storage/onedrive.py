@@ -4,7 +4,7 @@ from typing import Callable, NamedTuple, Optional
 
 import requests
 
-from .utils import pretty_size
+from .utils import pretty_size, timer
 
 
 class FileInfo(NamedTuple):
@@ -111,6 +111,7 @@ class OneDrive:
 
         return wrapper
 
+    @timer
     @_try_refresh
     def is_folder(self, path: str) -> Optional[bool]:
         onedrive_path = pathjoin(self.path, path)
@@ -132,6 +133,7 @@ class OneDrive:
         else:
             return False
 
+    @timer
     @_try_refresh
     def ls_folder(self, path: str) -> Optional[list]:
         onedrive_path = pathjoin(self.path, path)
@@ -159,6 +161,7 @@ class OneDrive:
 
         return file_info_list
 
+    @timer
     @_try_refresh
     def get_download_link(self, file_name: str) -> Optional[str]:
         onedrive_path = pathjoin(self.path, file_name)
