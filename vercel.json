@@ -3,6 +3,10 @@
     {
       "src": "/server/api.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "/server/web.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
