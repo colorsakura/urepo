@@ -8,14 +8,14 @@
   "routes": [
     {
       "src": "/",
-      "dest": "server/api.py"
+      "dest": "server/web.py"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "server/web.py"
     },
     {
       "src": "/.*.(sig|zst|db|files|key)",
-      "dest": "server/api.py"
-    },
-    {
-      "src": "/static/.*",
       "dest": "server/api.py"
     }
   ]
